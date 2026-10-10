@@ -3,7 +3,10 @@ name = "nfgis-2024"
 version = "0.1.0"
 description = "Reproducible collection of the national forest GIS data of Japan's Forestry Agency (nfgis-2024)"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "duckdb>=1.5.5",
+    "huggingface-hub>=1.0",
+]
 
 [dependency-groups]
 dev = ["pytest>=9.1.1", "ruff>=0.16.9"]
