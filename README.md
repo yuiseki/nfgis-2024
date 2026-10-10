@@ -23,8 +23,16 @@ code table and the terms. Reference date 2024-04-01.
 uv run python scripts/01_download.py --dry-run     # the plan and its size (about 1.4 GB)
 uv run python scripts/01_download.py               # fetch; run again to resume
 uv run python scripts/02_verify.py                 # sizes, sha256, zips, PDFs against the manifest
+uv run python scripts/03_export_parquet.py         # shapefiles -> data/parquet/2024/ (GeoParquet)
+/home/yuiseki/anaconda3/bin/python scripts/04_gdal_digests.py   # GDAL's reading, for the check
+uv run python scripts/05_verify_parquet.py         # Parquet against GDAL and the .shp headers
+uv run python scripts/06_card.py                   # data/README.md, LICENSE, provenance.yaml
+uv run python src/publish.py                       # dry run; --push uploads to the Hub
 uv run python -m pytest
 ```
+
+`04_gdal_digests.py` needs a Python with GDAL (osgeo), which uv's environment does not have.
+`06_card.py` needs `pdftotext` (poppler) to quote the terms PDFs.
 
 `01_download.py` reads the file list from the CKAN API (saved as `data/raw/2024/package.json`),
 fetches one file at a time, one second apart, writes `.part` files and resumes them with Range.
@@ -32,4 +40,5 @@ Most catalogue URLs carry a `www.geospatial.jp` prefix on the file name that the
 with HTTP 500; the name without it delivers the file with the size the catalogue states, so it is
 tried next. The server is slow (50 KB/s to 1 MB/s per connection).
 
-`data/` is not tracked. The files are under `data/raw/2024/` with a `MANIFEST.json`.
+`data/` is not tracked except the card, `LICENSE` and `provenance.yaml`; the files are under
+`data/raw/2024/` with a `MANIFEST.json`, and the Parquet under `data/parquet/2024/`.

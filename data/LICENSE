@@ -1,0 +1,64 @@
+Licence of nfgis-2024
+
+The data is the Forestry Agency's national forest GIS data (国有林GISデータ), 2024 edition,
+from https://www.geospatial.jp/ckan/dataset/nfgis-2024. The Agency applies the Public Data
+License 1.0 (PDL1.0, https://www.digital.go.jp/resources/open_data/public_data_license_v1.0),
+which states that it is compatible with the Creative Commons Attribution 4.0 International
+licence. The catalogue names the licence "ol" (other open licence); the Agency's own terms are
+the two documents below, which are the PDFs in raw/2024/, quoted as pdftotext reads them.
+
+1. 公共データ利用規約（第1.0版）に関する重要情報.pdf
+
+国有林 GIS データの利用に係る
+「公共データ利用規約（第 1.0 版）に関する重要情報」
+PDL1.0 における記載例部分について、個別の規定は以下のとおりです。
+１）出典の記載について
+ア 本コンテンツを利用する際は、出典を記載してください。出典の記載方法は、以
+下の例を参考にしてください。
+（出典記載例）
+出典：国有林 GIS データ（当該ページの URL）、PDL1.0
+（https://www.digital.go.jp/resources/open_data/public_data_license_v1.0）
+イ 本コンテンツを編集・加工等して利用する場合は、上記出典とは別に、編集・加
+工等を行ったことを記載してください。なお、編集・加工した情報を、あたかも林
+野庁が作成したかのような態様で公表・利用してはいけません。
+（本コンテンツを編集・加工等して利用する場合の記載例）
+・国有林 GIS データ（URL）を加工して作成
+・国有林 GIS データ（URL）をもとに○○株式会社作成 など
+
+2. 国有林GISデータの利用に当たっての留意事項.pdf
+
+国有林 GIS データの利用に当たっての留意事項
+国有林 GIS データ（以下「コンテンツ」という。）は、森林法（昭和 26 年法律第
+249 号）第７条の２、国有林野の管理経営に関する法律（昭和 26 年法律第 246 号）
+第６条及び国有林野管理経営規程（平成 11 年１月 21 日農林水産省訓令第２号）に基
+づき、国有林の森林資源の現況を把握することを目的として作成したものであり、同
+法等に基づく行政機関の事務又は行政機関との手続以外に利用することを目的とし
+て作成したものではありません。
+本コンテンツは、整備する過程で位置情報に誤差が生じている場合や、空中写真の
+判読等による間接調査により作成している場合があり、林小班の位置、面積、林種、
+樹種等の情報は、必ずしも現地と一致しているとは言えません。したがって、所有権、
+所有界、面積等土地に係る諸権利及び立木竹の評価について証明するものではありま
+せん。
+本コンテンツは、作成時点における森林資源の現況を示したものであり、本コンテ
+ンツを利用される現在における森林資源の現況を示すものではありません。
+林野庁では、国有林野の適切な管理のため、また、国有林野へ入林される皆様の安
+全を確保するために、一定の場合を除いて事前の入林手続をお願いしています。なお、
+林道については、通行できない場合があります。
+入林手続について、詳しくは、入林を希望される国有林野を管轄する森林管理局、森
+林管理署等へお問合せください（以下 URL 参照）。
+国有林への入林を希望されるみなさまへ：林野庁
+
+What this dataset changes. The files under raw/2024/ are the Agency's, byte for byte. The
+Parquet under parquet/2024/ was made from the shapefiles in those zips:
+
+  - the DBF was decoded from Shift_JIS (Microsoft cp932) and written as UTF-8; text was
+    stripped of spaces and an empty text or number became NULL; numbers were typed by their
+    DBF field type; no value was otherwise changed
+  - the geometry was copied as WKB without change, the coordinates are as published
+  - the columns file_index, record, source and bbox were added, and the layer was split by
+    plane rectangular zone, with the shapefiles of the prefecture zips concatenated in the order
+    of their paths
+  - parquet/2024/index.parquet lists the source shapefiles with their row counts
+
+This dataset is not made or endorsed by the Forestry Agency. The code in
+https://github.com/yuiseki/nfgis-2024 is MIT licensed and does not apply to the data.

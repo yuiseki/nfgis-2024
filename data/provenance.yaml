@@ -1,0 +1,44 @@
+"source":
+  "name": "国有林GISデータ (national forest GIS data), 2024 edition"
+  "publisher": "林野庁 国有林野部 経営企画課 (Forestry Agency)"
+  "catalogue": "https://www.geospatial.jp/ckan/dataset/nfgis-2024"
+  "catalogue_record_modified": "2026-02-24T01:38:03.257288"
+  "reference_date": "2024-04-01"
+  "specification_published": "2025-12-25"
+  "licence":
+    "applied": "Public Data License 1.0 (PDL1.0)"
+    "catalogue_license_id": "ol"
+    "terms":
+      - "公共データ利用規約（第1.0版）に関する重要情報.pdf"
+      - "国有林GISデータの利用に当たっての留意事項.pdf"
+    "card": "license: cc-by-4.0"
+"files":
+  "count": 51
+  "fetched_from": "2026-10-09T23:12:39Z"
+  "fetched_to": "2026-10-10T04:23:49Z"
+  "manifest": "raw/2024/MANIFEST.json"
+"shapefiles":
+  "count": 486
+  "features": 1091871
+  "by_layer":
+    "小班区画": 975666
+    "林班区画": 58293
+    "林道": 57912
+  "empty":
+    - "13東京都/49伊豆諸島森林計画区/第14系/林道.shp"
+    - "13東京都/49伊豆諸島森林計画区/第19系/林道.shp"
+    - "47沖縄県/156沖縄北部森林計画区/第15系/林道.shp"
+    - "47沖縄県/157沖縄中南部森林計画区/第15系/林道.shp"
+    - "47沖縄県/158宮古八重山森林計画区/第16系/林道.shp"
+"parquet":
+  "files": 47
+  "crs": "EPSG:2443 to EPSG:2461 by zone, as published"
+  "invalid_geometries":
+    "小班区画": 4325
+    "林班区画": 293
+    "林道": 0
+  "decoding": "Microsoft cp932"
+"checked":
+  - "raw files against MANIFEST.json (size, sha256, zip CRC)"
+  - "every attribute against GDAL by digest, every record's bbox and point count against the .shp header"
+  - "order, GeoParquet metadata, no bloom filter, opens without extensions"
